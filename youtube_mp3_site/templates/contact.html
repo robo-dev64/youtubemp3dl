@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flashes ml-5 mr-5">
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif  %}
+    {% endwith %} 
+
+    <div class="col-md-6 font-weight-light content-section mx-auto">
+        <form method="POST" action="">
+            {{ form.csrf_token }} 
+            <fieldset class="form-group">
+                <legend class="border-bottom">
+                    <div class="form-group mt-2">
+
+                        <!-- Email Label -->
+                        {{ form.email.label(class="form-control-label mb-4") }}
+                        <!-- Email String Field -->
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">                            
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}                            
+                            </div>
+                            
+                        {% else %}
+                            {{ form.email(class="form-control form-control-lg") }}
+                        {% endif %}
+
+                        <!-- Email Message -->
+                        {{ form.message.label(class="form-control-label mt-4") }}
+
+                        <!-- Email Message Text Field -->
+                        {% if form.message.errors %}
+                            {{ form.message(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">                            
+                                {% for error in form.message.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}                            
+                            </div>
+                            
+                        {% else %}
+                            {{ form.message(class="form-control form-control-lg mt-4 mb-4") }}
+                        {% endif %}
+
+                        
+                    </div>
+                </legend>
+            </fieldset>
+            <div class="form-group">              
+                <!-- Submit Email Button-->
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+        
+    </div>
+{% endblock content %}
