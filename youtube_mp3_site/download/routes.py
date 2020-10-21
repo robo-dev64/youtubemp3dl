@@ -13,10 +13,11 @@ download = Blueprint('download', __name__)
 @download.route('/download', methods=['GET', 'POST'])
 def download_mp3():
     form = YoutubeForm()
+    
     if form.validate_on_submit():
         try:
             video = YoutubeDownloader(str(form.video.data), form.mp3_submit.data)
-
+            
             if form.mp3_submit.data:
                 # download mp4 and convert to mp3
                 video.download_mp3()
@@ -59,7 +60,9 @@ def download_mp3():
                                  as_attachment=True,
                                  attachment_filename=f'{video.video_title}.mp4',
                                  mimetype='application/mp4')
-          
+        
+        
+
         except PytubeError:            
             return render_template('errors/download_error.html')            
 

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <form>
+            <h1 class="font-weight-bold mb-4">429 Too Many Requests Error</h3>
+            {% for error in errors %}
+            <p class="content font-weight-light">{{ error }}</p>
+            {% endfor %}
+        </form>
+    </div>
+{% endblock content %}
