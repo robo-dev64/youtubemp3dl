@@ -1,1 +1,1 @@
-web: gunicorn youtubemp3dl:run
+web: gunicorn run:app
