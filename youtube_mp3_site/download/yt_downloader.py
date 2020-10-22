@@ -1,14 +1,16 @@
-from pytube import YouTube
+from local_package.youtube_item import YouTubeItem
+# from YouPy import YouTubeItem
 from moviepy.editor import VideoFileClip, AudioClip
 from youtube_mp3_site.config import Config as cfg
 from youtube_mp3_site.download.utils import FileRenaming as file_rename
+from youtube_mp3_site.download.utils import Cookies as cookie
 
 
 
 class YoutubeDownloader:
     def __init__(self, url, is_mp3=False):
         self.url = url        
-        self.youtube_video = YouTube(self.url)
+        self.youtube_video = YouTubeItem(url=self.url, request_headers={'cookie': cookie.create_cookie()})
         self.video_title = self.youtube_video.title
         # replace any flagged characters to prevent OSError
         self.mp3_title = f'{"".join(file_rename.FILE_REPLACE_CHARS.get(c, c) for c in self.video_title)}.mp3'
