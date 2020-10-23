@@ -15,11 +15,11 @@ import os
 from typing import Dict, Tuple, Optional, BinaryIO
 from urllib.parse import parse_qs
 
-from YouPy import extract
-from YouPy import request
-from YouPy.helpers import safe_filename, target_directory
-from YouPy.itags import get_format_profile
-from YouPy.progress_state import ProgressState
+from local_packages.YouPy import extract
+from local_packages.YouPy import request
+from local_packages.YouPy.helpers import safe_filename, target_directory
+from local_packages.YouPy.itags import get_format_profile
+from local_packages.YouPy.progress_state import ProgressState
 
 logger = logging.getLogger(__name__)
 

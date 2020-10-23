@@ -19,8 +19,8 @@ import re
 from itertools import chain
 from typing import List, Tuple, Dict, Callable, Any, Optional
 
-from YouPy.exceptions import RegexMatchError
-from YouPy.helpers import regex_search, cache
+from local_packages.YouPy.exceptions import RegexMatchError
+from local_packages.YouPy.helpers import regex_search, cache
 
 logger = logging.getLogger(__name__)
 

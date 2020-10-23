@@ -4,9 +4,9 @@ import os
 import time
 import xml.etree.ElementTree as ElementTree
 from typing import Dict, Optional
-from YouPy import request
+from local_packages.YouPy import request
 from html import unescape
-from YouPy.helpers import safe_filename, target_directory
+from local_packages.YouPy.helpers import safe_filename, target_directory
 
 
 class Caption:

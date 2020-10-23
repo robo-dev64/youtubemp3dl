@@ -1,5 +1,4 @@
 from local_packages.YouPy.youtube_item import YouTubeItem
-# from YouPy import YouTubeItem
 from moviepy.editor import VideoFileClip, AudioClip
 from youtube_mp3_site.config import Config as cfg
 from youtube_mp3_site.download.utils import FileRenaming as file_rename

@@ -9,7 +9,7 @@ import warnings
 from typing import TypeVar, Callable, Optional, Dict, List, Any
 from urllib import request
 
-from YouPy.exceptions import RegexMatchError
+from local_packages.YouPy.exceptions import RegexMatchError
 
 logger = logging.getLogger(__name__)
 

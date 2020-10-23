@@ -9,9 +9,9 @@ __author__ = "Emre Bayram"
 __license__ = "MIT License"
 __copyright__ = "Copyright 2020 Emre Bayram"
 
-from YouPy.streams import Stream
-from YouPy.captions import Caption
-from YouPy.query import CaptionQuery
-from YouPy.query import StreamQuery
-from YouPy.youtube_item import YouTubeItem
-from YouPy.contrib.playlist import Playlist
+from local_packages.YouPy.streams import Stream
+from local_packages.YouPy.captions import Caption
+from local_packages.YouPy.query import CaptionQuery
+from local_packages.YouPy.query import StreamQuery
+from local_packages.YouPy.youtube_item import YouTubeItem
+from local_packages.YouPy.contrib.playlist import Playlist

@@ -4,16 +4,16 @@ from typing import Optional, Dict, List
 from urllib.parse import parse_qsl
 from html import unescape
 
-from YouPy import Caption
-from YouPy import CaptionQuery
-from YouPy import extract
-from YouPy import request
-from YouPy import Stream
-from YouPy import StreamQuery
-from YouPy.extract import apply_descrambler, apply_signature, get_ytplayer_config
-from YouPy.helpers import install_proxy
-from YouPy.exceptions import VideoUnavailable
-from YouPy.progress_state import OnProgress, OnComplete, ProgressState
+from local_packages.YouPy import Caption
+from local_packages.YouPy import CaptionQuery
+from local_packages.YouPy import extract
+from local_packages.YouPy import request
+from local_packages.YouPy import Stream
+from local_packages.YouPy import StreamQuery
+from local_packages.YouPy.extract import apply_descrambler, apply_signature, get_ytplayer_config
+from local_packages.YouPy.helpers import install_proxy
+from local_packages.YouPy.exceptions import VideoUnavailable
+from local_packages.YouPy.progress_state import OnProgress, OnComplete, ProgressState
 
 logger = logging.getLogger(__name__)
 

@@ -9,9 +9,9 @@ from typing import Any, Optional, Tuple, List, Dict
 from urllib.parse import quote, parse_qs, unquote, parse_qsl
 from urllib.parse import urlencode
 
-from YouPy.cipher import Cipher
-from YouPy.exceptions import RegexMatchError, HTMLParseError, LiveStreamError
-from YouPy.helpers import regex_search
+from local_packages.YouPy.cipher import Cipher
+from local_packages.YouPy.exceptions import RegexMatchError, HTMLParseError, LiveStreamError
+from local_packages.YouPy.helpers import regex_search
 
 logger = logging.getLogger(__name__)
 

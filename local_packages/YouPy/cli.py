@@ -13,10 +13,10 @@ import sys
 import subprocess  # nosec
 from typing import List, Optional
 
-from YouPy import CaptionQuery, Stream, Playlist
-from YouPy import YouTubeItem
-from YouPy.exceptions import PytubeError
-from YouPy.helpers import safe_filename, setup_logger
+from local_packages.YouPy import CaptionQuery, Stream, Playlist
+from local_packages.YouPy import YouTubeItem
+from local_packages.YouPy.exceptions import PytubeError
+from local_packages.YouPy.helpers import safe_filename, setup_logger
 
 
 def main():

@@ -1,11 +1,11 @@
-from flask import render_template, Blueprint, redirect, flash, send_file, send_from_directory, url_for, safe_join
+from flask import render_template, Blueprint, redirect, flash, send_file, send_from_directory, url_for, safe_join, request
+from local_packages.YouPy.exceptions import RegexMatchError
 from youtube_mp3_site.download.forms import YoutubeForm
-from flask import request
 from youtube_mp3_site.download.yt_downloader import YoutubeDownloader
-from pytube.exceptions import PytubeError
-import os
 from youtube_mp3_site.config import Config as cfg
 import io
+import os
+
 
 
 download = Blueprint('download', __name__)
@@ -63,7 +63,9 @@ def download_mp3():
         
         
 
-        except PytubeError:            
-            return render_template('errors/download_error.html')            
+        except KeyError as error:            
+            return render_template('errors/download_error.html', errors=['KeyError: %s' % error]) 
+        except RegexMatchError as re:
+            return render_template('errors/download_error.html', errors=['RegexMatchError: %s' % re])                    
 
     return render_template('download.html', title='Download', form=form)

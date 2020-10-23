@@ -10,8 +10,8 @@ from typing import List, Optional, Iterable, Dict, Union
 from urllib.parse import parse_qs
 from collections.abc import Sequence
 
-from YouPy import request, YouTubeItem
-from YouPy.helpers import cache, deprecated, install_proxy, uniqueify
+from local_packages.YouPy import request, YouTubeItem
+from local_packages.YouPy.helpers import cache, deprecated, install_proxy, uniqueify
 
 logger = logging.getLogger(__name__)
 

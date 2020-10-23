@@ -4,8 +4,8 @@
 from typing import Callable, List, Optional, Union
 from collections.abc import Mapping, Sequence
 
-from YouPy import Stream, Caption
-from YouPy.helpers import deprecated
+from local_packages.YouPy import Stream, Caption
+from local_packages.YouPy.helpers import deprecated
 
 
 class StreamQuery(Sequence):
