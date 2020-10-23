@@ -3,6 +3,7 @@ from local_packages.YouPy.exceptions import RegexMatchError
 from youtube_mp3_site.download.forms import YoutubeForm
 from youtube_mp3_site.download.yt_downloader import YoutubeDownloader
 from youtube_mp3_site.config import Config as cfg
+from urllib.error import HTTPError
 import io
 import os
 
@@ -12,9 +13,10 @@ download = Blueprint('download', __name__)
 
 @download.route('/download', methods=['GET', 'POST'])
 def download_mp3():
+
     form = YoutubeForm()
-    
-    if form.validate_on_submit():
+
+    if form.validate_on_submit():        
         try:
             video = YoutubeDownloader(str(form.video.data), form.mp3_submit.data)
             
@@ -60,9 +62,9 @@ def download_mp3():
                                  as_attachment=True,
                                  attachment_filename=f'{video.video_title}.mp4',
                                  mimetype='application/mp4')
-        
-        
-
+        except HTTPError as http_error:
+            if http_error.code == 429:
+                return render_template('errors/429.html', errors=[error])
         except KeyError as error:            
             return render_template('errors/download_error.html', errors=['KeyError: %s' % error]) 
         except RegexMatchError as re:
