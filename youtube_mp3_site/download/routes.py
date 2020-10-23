@@ -64,7 +64,8 @@ def download_mp3():
                                  mimetype='application/mp4')
         except HTTPError as http_error:
             if http_error.code == 429:
-                return render_template('errors/429.html', errors=[http_error])
+                retry_after = http_error.headers["Retry-After"]
+                return render_template('errors/429.html', errors=[http_error, "Retry After: %s" % retry_after])
         except KeyError as error:            
             return render_template('errors/download_error.html', errors=['KeyError: %s' % error]) 
         except RegexMatchError as re:
