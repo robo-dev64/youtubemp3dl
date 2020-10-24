@@ -27,9 +27,9 @@ class YoutubeDownloader:
         # Replace unacceptable characters from video title
         self.new_title = "".join(file_rename.FILE_REPLACE_CHARS.get(c,c) for c in self.video_title)
         # Title if file is an mp3
-        self.mp3_title = f'{self.new_title}.mp3'
+        self.mp3_title = f'{self.video_id}.mp3'
         # Title if file is an mp4
-        self.mp4_title = f'{self.new_title}.mp4'        
+        self.mp4_title = f'{self.video_id}.mp4'        
         # moviepy video clip object
         self.video_clip = None
         # Dictates whether to download mp3 or not.
@@ -45,11 +45,11 @@ class YoutubeDownloader:
 
     def download_mp4(self):
         # old 
-        video_id_dl = f'{video_path}\\{self.video_id}.mp4'
+        # video_id_dl = f'{video_path}\\{self.video_id}.mp4'
         # new
-        video_dl = f'{video_path}\\{self.mp4_title}'
+        # video_dl = f'{video_path}\\{self.mp4_title}'
         # rename video_id mp4 to title
-        os.rename(video_id_dl, video_dl)
+        # os.rename(video_id_dl, video_dl)
         self.video_clip = VideoFileClip(os.path.join(video_path, self.mp4_title))
         # self.video_clip = VideoFileClip("%s\\%s" % (cfg.PATH_TO, self.mp4_title))    
         if not self.is_mp3:
