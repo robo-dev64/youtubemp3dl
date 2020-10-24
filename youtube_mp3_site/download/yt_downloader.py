@@ -1,4 +1,4 @@
-from moviepy.editor import VideoFileClip, AudioClip
+# from moviepy.editor import VideoFileClip, AudioClip
 from youtube_mp3_site.config import Config as cfg
 from youtube_mp3_site.download.utils import FileRenaming as file_rename
 from youtube_mp3_site.download.utils import Cookies as cookie
@@ -10,11 +10,28 @@ video_path = os.path.abspath(cfg.PATH_TO)
 class YoutubeDownloader:
     def __init__(self, url, is_mp3=False):
         self.url = url
+        # Dictates whether to download mp3 or not.
+        self.is_mp3 = is_mp3
         # YoutubeDL options                    
         self.options = {
-            'outtmpl': cfg.PATH_TO + '/%(id)s.%(ext)s',
+            'outtmpl': cfg.PATH_TO + '\\%(id)s.%(ext)s',
             'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
         }
+        # update more options if mp3
+        if is_mp3:
+            self.options.update(
+                {
+                    'postprocessors': [{
+                        'key': 'FFmpegExtractAudio',
+                        'preferredcodec': 'mp3',
+                        'preferredquality': '192',
+                    }],
+
+                    'keepvideo': False,
+                    'format': 'bestaudio/best'
+
+                }
+            )
 
         # YoutubeDL object
         self.ydl = youtube_dl.YoutubeDL(self.options)        
@@ -30,30 +47,8 @@ class YoutubeDownloader:
         self.mp3_title = f'{self.video_id}.mp3'
         # Title if file is an mp4
         self.mp4_title = f'{self.video_id}.mp4'        
-        # moviepy video clip object
-        self.video_clip = None
-        # Dictates whether to download mp3 or not.
-        self.is_mp3 = is_mp3
-    
-    def download_mp3(self):
-        self.download_mp4()
-        self.audio_clip = self.video_clip.audio
-        self.audio_clip.write_audiofile(os.path.join(os.path.abspath(cfg.PATH_TO), self.mp3_title))
-        # self.audio_clip.write_audiofile("%s\\%s" % (cfg.PATH_TO, self.mp3_title))
-        self.audio_clip.close()
-        self.video_clip.close() 
 
-    def download_mp4(self):
-        # old 
-        # video_id_dl = f'{video_path}\\{self.video_id}.mp4'
-        # new
-        # video_dl = f'{video_path}\\{self.mp4_title}'
-        # rename video_id mp4 to title
-        # os.rename(video_id_dl, video_dl)
-        self.video_clip = VideoFileClip(os.path.join(video_path, self.mp4_title))
-        # self.video_clip = VideoFileClip("%s\\%s" % (cfg.PATH_TO, self.mp4_title))    
-        if not self.is_mp3:
-            self.video_clip.close()
+    
 
     @property
     def get_audio_clip(self):
@@ -61,7 +56,7 @@ class YoutubeDownloader:
 
     @property
     def get_video_clip(self):
-        return self.video_clip.filename
+        return self.mp4_title
     
 
 
