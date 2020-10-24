@@ -39,7 +39,7 @@ def download_mp3():
             # send file
             return send_file(audio_clip_ret_data, 
                                 as_attachment=True, 
-                                attachment_filename=f'{video.video_title}.mp3',
+                                attachment_filename=f'{video.mp3_title}',
                                 mimetype='application/mp3')
         else:
             # download mp4 file
@@ -56,7 +56,7 @@ def download_mp3():
 
             return send_file(video_clip_ret_data, 
                                 as_attachment=True,
-                                attachment_filename=f'{video.video_title}.mp4',
+                                attachment_filename=f'{video.mp4_title}',
                                 mimetype='application/mp4')
 
 
