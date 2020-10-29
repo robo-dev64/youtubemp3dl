@@ -1,11 +1,11 @@
-# from moviepy.editor import VideoFileClip, AudioClip
 from youtube_mp3_site.config import Config as cfg
 from youtube_mp3_site.download.utils import FileRenaming as file_rename
-from youtube_mp3_site.download.utils import Cookies as cookie
+from youtube_mp3_site.download.utils import Cookies
 import youtube_dl
 import os
 
 video_path = os.path.abspath(cfg.PATH_TO)
+SLEEP_TIME = 30
 
 class YoutubeDownloader:
     def __init__(self, url, is_mp3=False):
@@ -16,6 +16,8 @@ class YoutubeDownloader:
         self.options = {
             'outtmpl': cfg.PATH_TO + '\\%(id)s.%(ext)s',
             'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4',
+            'sleep_interval': SLEEP_TIME,
+            'cookies': Cookies.create_cookie()
         }
         # update more options if mp3
         if is_mp3:
