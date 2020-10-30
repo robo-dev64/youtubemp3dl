@@ -3,6 +3,7 @@ from youtube_dl.utils import DownloadError as dl_error
 
 errors = Blueprint('errors', __name__)
 
+
 @errors.app_errorhandler(403)
 def error_403(error):
     return render_template('errors/403.html'), 403
@@ -12,8 +13,8 @@ def error_404(error):
     return render_template('errors/404.html'), 404
 
 @errors.app_errorhandler(dl_error)
-def error_429(error):
-    return render_template('errors/429.html', errors=[error]), 429
+def error_download(error):
+    return render_template('errors/download_error.html', errors=[error.msg])
 
 @errors.app_errorhandler(500)
 def error_500(error):
