@@ -5,7 +5,7 @@ import youtube_dl
 import os
 
 video_path = os.path.abspath(cfg.PATH_TO)
-SLEEP_TIME = 5
+SLEEP_TIME = 2
 
 class YoutubeDownloader:
     def __init__(self, url, is_mp3=False):
