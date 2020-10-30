@@ -14,7 +14,7 @@ def error_404(error):
 
 @errors.app_errorhandler(dl_error)
 def error_download(error):
-    return render_template('errors/download_error.html', errors=[error.msg])
+    return render_template('errors/download_error.html', errors=[error.exc_info])
 
 @errors.app_errorhandler(500)
 def error_500(error):
