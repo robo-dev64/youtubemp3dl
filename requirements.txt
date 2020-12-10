@@ -20,7 +20,7 @@ moviepy==1.0.3
 numpy==1.19.2
 Pillow==8.0.0
 proglog==0.1.9
-youtube-dl==2020.09.20
+youtube-dl==2020.12.09
 requests==2.24.0
 tqdm==4.50.2
 typing-extensions==3.7.4.3
